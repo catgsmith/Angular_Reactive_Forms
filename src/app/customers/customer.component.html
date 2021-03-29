@@ -1,13 +1,10 @@
 <div class="card">
-  <div class="card-header">
-    Sign Up!
-  </div>
+  <div class="card-header">Sign Up!</div>
 
   <div class="card-body">
     <form novalidate
           (ngSubmit)="save()"
           [formGroup]="customerForm">
-
       <div class="form-group row mb-2">
         <label class="col-md-2 col-form-label"
                for="firstNameId">First Name</label>
@@ -19,7 +16,12 @@
                  required
                  minlength="3"
                  formControlName="firstName"
-                 [ngClass]="{'is-invalid': (customerForm.get('firstName').touched || customerForm.get('firstName').dirty) && !customerForm.get('firstName').valid }" />
+                 [ngClass]="{
+            'is-invalid':
+            (customerForm.get('firstName').touched ||
+            customerForm.get('firstName').dirty) &&
+            !customerForm.get('firstName').valid
+            }" />
           <span class="invalid-feedback">
             <span *ngIf="customerForm.get('firstName').errors?.required">
               Please enter your first name.
@@ -41,8 +43,13 @@
                  placeholder="Last Name (required)"
                  required
                  maxlength="50"
-                 formControlName="lastName"                 
-                 [ngClass]="{'is-invalid': (customerForm.get('lastName').touched || customerForm.get('lastName').dirty) && !customerForm.get('lastName').valid }" />
+                 formControlName="lastName"
+                 [ngClass]="{
+            'is-invalid':
+            (customerForm.get('lastName').touched ||
+            customerForm.get('lastName').dirty) &&
+            !customerForm.get('lastName').valid
+            }" />
           <span class="invalid-feedback">
             <span *ngIf="customerForm.get('lastName').errors?.required">
               Please enter your last name.
@@ -65,7 +72,12 @@
                  required
                  email
                  formControlName="email"
-                 [ngClass]="{'is-invalid': (customerForm.get('email').touched || customerForm.get('email').dirty) && !customerForm.get('email').valid }" />
+                 [ngClass]="{
+            'is-invalid':
+            (customerForm.get('email').touched ||
+            customerForm.get('email').dirty) &&
+            !customerForm.get('email').valid
+            }" />
           <span class="invalid-feedback">
             <span *ngIf="customerForm.get('email').errors?.required">
               Please enter your email address.
@@ -84,8 +96,8 @@
               <input class="form-check-input"
                      id="sendCatalogId"
                      type="checkbox"
-                     formControlName="sendCatalog">
-                     Send me your catalog                      
+                     formControlName="sendCatalog" />
+              Send me your catalog
             </label>
           </div>
         </div>
@@ -194,22 +206,27 @@
           </div>
         </div>
       </div> -->
-
       <div class="form-group row mb-2">
         <div class="offset-md-2 col-md-4">
           <button class="btn btn-primary mr-3"
                   type="submit"
-                  style="width:80px"
-                  [title]="customerForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                  style="width: 80px"
+                  [title]="customerForm.valid
+            ? 'Save your entered data'
+            : 'Disabled until the form data is valid'"
                   [disabled]="!customerForm.valid">
             Save
+          </button>
+          <button class="btn btn-outline-secondary"
+                  type="button"
+                  (click)="populateTestData()">
+            Test Data
           </button>
         </div>
       </div>
     </form>
   </div>
 </div>
-<br>Dirty: {{ customerForm.dirty }}
-<br>Touched: {{ customerForm.touched }}
-<br>Valid: {{ customerForm.valid }}
-<br>Value: {{ customerForm.value | json }}
+<br />Dirty: {{ customerForm.dirty }} <br />Touched: {{ customerForm.touched }}
+<br />Valid: {{ customerForm.valid }} <br />Value:
+{{ customerForm.value | json }}

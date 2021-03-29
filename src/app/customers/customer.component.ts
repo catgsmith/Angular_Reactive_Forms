@@ -29,4 +29,14 @@ export class CustomerComponent implements OnInit {
     console.log(this.customerForm);
     console.log('Saved: ' + JSON.stringify(this.customerForm.value));
   }
+
+  populateTestData(): void {
+    // use setValue when setting all of the form controls on the form
+      this.customerForm.patchValue({
+        firstName: 'Jack',
+        lastName: 'Harkness',
+        // email: 'jack@torchwood.com',
+        sendCatalog: false
+      });
+  }
 }
