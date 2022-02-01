@@ -46,7 +46,7 @@ export class CustomerComponent implements OnInit {
   customer = new Customer(); // data model
   emailMessage: string;
 
-  get addresses(): FormArray{
+  get addresses(): FormArray {
     return <FormArray>this.customerForm.get('addresses');
   }
 
@@ -73,7 +73,7 @@ export class CustomerComponent implements OnInit {
       notification: 'email',
       rating: [null, ratingRange(1, 5)],
       sendCatalog: true,
-      addresses: this.fb.array([ this.buildAddress() ])
+      addresses: this.fb.array([this.buildAddress()]),
     });
 
     this.customerForm
@@ -84,6 +84,10 @@ export class CustomerComponent implements OnInit {
     emailControl.valueChanges
       .pipe(debounceTime(1000))
       .subscribe((value) => this.setMessage(emailControl));
+  }
+
+  addAddress(): void {
+    this.addresses.push(this.buildAddress());
   }
 
   buildAddress(): FormGroup {
