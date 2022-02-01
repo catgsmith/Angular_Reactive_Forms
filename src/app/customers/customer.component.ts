@@ -64,7 +64,7 @@ export class CustomerComponent implements OnInit {
       sendCatalog: true,
     });
     this.customerForm.get('notification').valueChanges.subscribe(
-      value => console.log(value)
+      value => this.setNotification(value)
     );
   }
 
